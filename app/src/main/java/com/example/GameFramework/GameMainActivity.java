@@ -1,5 +1,6 @@
 package com.example.GameFramework;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -56,6 +57,17 @@ public abstract class GameMainActivity extends Activity implements
      * Instance Variables
      * --------------------------------------------------------------------
      */
+
+    public int[] cards;
+    final int maxCardsHand = 13;
+    final int numCardsDeck = 52;
+    public int currentHand;
+    public boolean isCardCorrect;
+    public boolean isCardVisible;
+    public boolean is3Spade;
+    public int rankings; //numbers corresponds to a stage
+
+
 
     // A reference to the object representing the game itself. This is the
     // object that knows the rules of the game. This variable is initialized in
