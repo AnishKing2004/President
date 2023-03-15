@@ -58,14 +58,7 @@ public abstract class GameMainActivity extends Activity implements
      * --------------------------------------------------------------------
      */
 
-    public int[] cards;
-    final int maxCardsHand = 13;
-    final int numCardsDeck = 52;
-    public int currentHand;
-    public boolean isCardCorrect;
-    public boolean isCardVisible;
-    public boolean is3Spade;
-    public int rankings; //numbers corresponds to a stage
+
 
 
 
