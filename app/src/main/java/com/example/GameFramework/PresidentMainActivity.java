@@ -1,5 +1,9 @@
 package com.example.GameFramework;
 
+import static com.example.GameFramework.utilities.Saving.SEPARATOR;
+
+import com.example.GameFramework.infoMessage.GameState;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,6 +109,12 @@ public class PresidentMainActivity {
 
 
 
+    }
+    @Override
+    public String toString() {
+        return this.playerId + SEPARATOR + this.currentHand + SEPARATOR + this.rankings + SEPARATOR +
+                this.maxCardsHand + SEPARATOR + this.numCardsDeck + SEPARATOR + this.cards + SEPARATOR +
+                this.is3Spade + SEPARATOR + this.isCardCorrect + SEPARATOR + this.isCardVisible;
     }
 
 }
