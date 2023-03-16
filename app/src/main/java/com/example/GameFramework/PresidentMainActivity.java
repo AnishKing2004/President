@@ -2,9 +2,8 @@ package com.example.GameFramework;
 
 import static com.example.GameFramework.utilities.Saving.SEPARATOR;
 
-import com.example.GameFramework.infoMessage.GameState;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class PresidentMainActivity {
@@ -106,10 +105,8 @@ public class PresidentMainActivity {
         public boolean isVisibleToPlayer (int playerId){ //checks if cards should be shown
             return true;
         }
-
-
-
     }
+
     @Override
     public String toString() {
         return this.playerId + SEPARATOR + this.currentHand + SEPARATOR + this.rankings + SEPARATOR +
@@ -117,4 +114,58 @@ public class PresidentMainActivity {
                 this.is3Spade + SEPARATOR + this.isCardCorrect + SEPARATOR + this.isCardVisible;
     }
 
+
+    //checks to see if card is legal to play
+    public boolean isLegal(int playersCardNum, int cardOnDeck, int numOfCardsSelected){
+        //2 has no rank and will clear the deck, so will always be legal and can't have more than 4 cards selected
+        if (playersCardNum == 2 || playersCardNum > cardOnDeck && numOfCardsSelected >= 4){
+            isCardCorrect = true;
+            updateHand(numOfCardsSelected);
+            return true; }
+        else{
+            isCardCorrect = false;
+            updateHand(numOfCardsSelected);
+            return false; }
+    }
+    //updates players hand when plays a card
+    public boolean updateHand(int numOfCardsSelected) {
+        if(numOfCardsSelected >= 1 ){ currentHand = currentHand - numOfCardsSelected;}
+        else{ currentHand = currentHand; }
+        return true;
+    }
+
+    //initializes list of players in Array
+    private Player player1;
+    private Player player2;
+    private Player player3;
+    private Player player4;
+
+    public List<Player> players = Arrays.asList(player1, player2, player3, player4);
+    Player currentPlayer = players.get(0);
+    //methods switches players
+    public void switchPlayer(Player currentPlayer)
+    {   //selects the next player from list that is after current and then restart with the first after the last
+        players.get((players.indexOf(currentPlayer) + 1) % players.size());
+    }
+    //checks if card is legal to play, then modifies game state to reflect player played a card
+    //updated users num of cards and switches players
+    public boolean playCard(int playerId, int cardOnDeck, int playersCardNum, int numOfCardsSelected, Player currentPlayer){
+        if(isLegal(playersCardNum, cardOnDeck, numOfCardsSelected)){
+            switchPlayer(currentPlayer);
+            return true; }
+        else{
+            switchPlayer(currentPlayer);
+            return false; }
+    }
+    //this case pass will always be legal so don't need to check, then reflects player passed by
+    // updated users num of cards and switches players
+    public boolean pass(int playerId, int numOfCardsSelected){
+        updateHand(numOfCardsSelected);
+        switchPlayer(currentPlayer);
+        return true;
+    }
+    //pause is always legal so don't need to check or do anything to game state
+    public boolean pause(int playerId){
+        return true;
+    }
 }
