@@ -6,6 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Anish Karumuri
+ * @author Zella Running
+ * @author Calvin Phuong
+ * @author Yutaka Roberts
+ */
+
 public class PresidentMainActivity {
     public int playerId; // the player
     public List<Card> cards; //cards array

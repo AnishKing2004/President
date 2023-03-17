@@ -10,5 +10,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        GameController gameController = new GameController();
+        Button button = findViewById(R.id.testButton);
+        button.setOnClickListener(gameController);
     }
 }
